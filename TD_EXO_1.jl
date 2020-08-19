@@ -16,10 +16,10 @@ using LibFEM,Plots
 # The degrees of freedom are the u & v displacements 
 # ===============================================================================
 #PARAMETERS
-L=10000.; #length in mm
-A=100.; #cross-sectional area in mm^2
-E=210000.; #modulus of elasticity in MPa [steel]
-FM=10000.; #force modulus in N
+L=10000. #length in mm
+A=100. #cross-sectional area in mm^2
+E=210000. #modulus of elasticity in MPa [steel]
+FM=10000. #force modulus in N
 # ===============================================PRE-PROCESSING==================
 # DEFINING AND DISCRETIZING[MESHING] THE STRUCTURE
 # connectivity table
