@@ -13,7 +13,7 @@ using LibFEM,Plots
 #(1)
 # ===============================================================================
 # The element used here is a linear 2D straight truss with constant cross section
-# The degrees of freedom are the u & v displacements
+# The degrees of freedom are the u & v displacements 
 # ===============================================================================
 #PARAMETERS
 L=10000.; #length in mm
