@@ -1,3 +1,4 @@
+using Pkg; Pkg.add(url="https://github.com/amdeld/LibFEM.jl")
 using LibFEM # ,Plots
 # Units system mm/tonne/s/K
 # ===============================================================================
