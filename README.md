@@ -4,5 +4,5 @@
 
 For educational purposes only.
 
-Jupyter Notebooks and Julia Scripts relying on LibFEM to perform basic FEM scientific calcutations.
+Jupyter Notebooks and Julia Scripts relying on LibFEM to perform basic FEM scientific calculations.
 
