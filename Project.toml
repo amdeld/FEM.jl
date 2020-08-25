@@ -1,2 +1,5 @@
+[deps]
+LibFEM = "3625dbae-1167-4e4e-9595-224d0cceb916"
+
 [compat]
 julia = "1.5"
