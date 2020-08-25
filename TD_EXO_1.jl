@@ -1,4 +1,4 @@
-using Pkg; Pkg.add(url="https://github.com/amdeld/LibFEM.jl")
+#using Pkg; Pkg.add(url="https://github.com/amdeld/LibFEM.jl")
 using LibFEM # ,Plots
 # Units system mm/tonne/s/K
 # ===============================================================================
@@ -14,7 +14,7 @@ using LibFEM # ,Plots
 #(1)
 # ===============================================================================
 # The element used here is a linear 2D straight truss with constant cross section
-# The degrees of freedom are the u & v displacements 
+# The degrees of freedom are the u & v displacements
 # ===============================================================================
 #PARAMETERS
 const L=10000. #length in mm
