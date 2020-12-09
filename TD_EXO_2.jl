@@ -99,7 +99,7 @@ display(σ1)
 println("σ2=\r")
 display(σ2)
 
-#===============================================POST-PROCESSING=================
+#= ==============================================POST-PROCESSING=================
 hold on
 Xini=[X1pos X3pos]
 Yini=[Y1pos Y3pos]
@@ -115,3 +115,4 @@ Xdef=[(X2pos+fampl*U[3]) (X3pos+fampl*U[5])]
 Ydef=[(Y2pos+fampl*U[4]) (Y3pos+fampl*U[6])]
 plot(Xdef,Ydef,"bs-")
 
+=#
