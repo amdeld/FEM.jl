@@ -87,7 +87,8 @@ println("ϵ1=\r")
 display(ϵ1)
 ϵ2=D2_TrussElementStrain(L2,0,U2)
 println("ϵ2=\r")
-display(ϵ2)#computing element forces
+display(ϵ2)
+#computing element forces
 f1=D2_TrussElementForce(E1,A1,L1,45,U1)
 f2=D2_TrussElementForce(E2,A2,L2,0,U2)
 #computing element stresses
