@@ -66,12 +66,12 @@ display(K)
 #extracting displacement submatrix via index vector
 K_s=K[5:6,5:6]
 #Setting-up the force subvector by applying Load & Boundary Conditions[LBC]]
-F_s=[0 FM]'
+F_s=[0, FM]
 #solving by gaussian elimination
 U_s=K_s\F_s
 #SOLVING FORCE EQUATIONS
 #setting-up the global nodal displacement vector
-U=[0 0 0 0 U_s[1:2]']'
+U=[0, 0, 0, 0, U_s[1],U_s[2]]
 println("U=\r")
 display(U)
 #computing the global nodal force vector
@@ -80,8 +80,8 @@ println("F=\r")
 display(F)
 #COMPUTING STRESSES
 #writing the element nodal displacement vectors
-U1=[U[1] U[2] U[5] U[6]]'
-U2=[U[3] U[4] U[5] U[6]]'
+U1=[U[1], U[2], U[5], U[6]]
+U2=[U[3], U[4], U[5], U[6]]
 #computing element strains
 ϵ1=D2_TrussElementStrain(L1,45,U1)
 println("ϵ1=\r")
