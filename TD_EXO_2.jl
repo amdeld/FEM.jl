@@ -70,12 +70,12 @@ display(K)
 #extracting displacement submatrix via index vector
 K_s=K[5:6,5:6]
 #Setting-up the force subvector by applying Load & Boundary Conditions[LBC]]
-F_s=[0 -FM]'
+F_s=[0, FM]
 #solving by gaussian elimination
 U_s=K_s\F_s
 #SOLVING FORCE EQUATIONS
 #setting-up the global nodal displacement vector
-U=[0 0 0 0 U_s[1:2]' 0 0]'
+U=[0, 0, 0, 0, U_s[1],U_s[2], 0, 0]
 #computing the global nodal force vector
 F=K*U
 #COMPUTING STRESSES
