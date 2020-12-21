@@ -171,7 +171,7 @@ uuid = "c1c5ebd0-6772-5130-a774-d5fcae4a789d"
 version = "3.100.0+3"
 
 [[LibFEM]]
-git-tree-sha1 = "32eed615c055ff92d4b0675d541d7d85518c3b8e"
+git-tree-sha1 = "210b01d76f6117d1a8f96902091260ab33ab665a"
 repo-rev = "master"
 repo-url = "https://github.com/amdeld/LibFEM.jl"
 uuid = "3625dbae-1167-4e4e-9595-224d0cceb916"
