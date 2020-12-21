@@ -1,5 +1,5 @@
-using Pkg
-Pkg.add(PackageSpec(url="https://github.com/amdeld/LibFEM.jl"))
+#using Pkg
+#Pkg.add(PackageSpec(url="https://github.com/amdeld/LibFEM.jl"))
 using LibFEM # ,Plots
 # Units system mm/tonne/s/K
 # ===============================================================================
@@ -33,29 +33,29 @@ X1pos=0.;Y1pos=0.
 X2pos=0.;Y2pos=L
 X3pos=L;Y3pos=L
 #lengths
-L1=D2_TrussElementLength(X1pos,Y1pos,X3pos,Y3pos) #length of element 1
-L2=D2_TrussElementLength(X2pos,Y2pos,X3pos,Y3pos) #length of element 2
+L1=d2_truss_elementlength(X1pos,Y1pos,X3pos,Y3pos) #length of element 1
+L2=d2_truss_elementlength(X2pos,Y2pos,X3pos,Y3pos) #length of element 2
 #APPLYING GEOMETRIC&MATERIAL PROPERTIES
 A1=sqrt(2)*A #cross-sectional area of element 1
 A2=A #cross-sectional area of element 2
 E1=E #material of element 1
 E2=E #material of element 2
 #writing-defining the element stiffness matrices
-K1=D2_TrussElementStiffness(E1,A1,L1,45)
+K1=d2_truss_elementstiffness(E1,A1,L1,45)
 println("K1=\r")
 display(K1)
-K2=D2_TrussElementStiffness(E2,A2,L2,0)
+K2=d2_truss_elementstiffness(E2,A2,L2,0)
 println("K2=\r")
 display(K2)
 #ASSEMBLING THE GLOBAL STIFFNESS MATRIX
 #matrices initialization
 K=zeros(6,6);K1P=zeros(6,6)
 #positionning stiffness matrices
-K1P=D2_TrussAssemble(K,K1,1,3)
+K1P=d2_truss_assemble(K,K1,1,3)
 println("K1P=\r")
 display(K1P)
 K=zeros(6,6);K2P=zeros(6,6)
-K2P=D2_TrussAssemble(K,K2,2,3)
+K2P=d2_truss_assemble(K,K2,2,3)
 println("K2P=\r")
 display(K2P)
 #assembling
@@ -66,7 +66,7 @@ display(K)
 #extracting displacement submatrix via index vector
 K_s=K[5:6,5:6]
 #Setting-up the force subvector by applying Load & Boundary Conditions[LBC]]
-F_s=[0, FM]
+F_s=[0, -FM]
 #solving by gaussian elimination
 U_s=K_s\F_s
 #SOLVING FORCE EQUATIONS
@@ -83,19 +83,23 @@ display(F)
 U1=[U[1], U[2], U[5], U[6]]
 U2=[U[3], U[4], U[5], U[6]]
 #computing element strains
-ϵ1=D2_TrussElementStrain(L1,45,U1)
+ϵ1=d2_truss_elementstrain(L1,45,U1)
 println("ϵ1=\r")
 display(ϵ1)
-ϵ2=D2_TrussElementStrain(L2,0,U2)
+ϵ2=d2_truss_elementstrain(L2,0,U2)
 println("ϵ2=\r")
 display(ϵ2)
 #computing element forces
-f1=D2_TrussElementForce(E1,A1,L1,45,U1)
-f2=D2_TrussElementForce(E2,A2,L2,0,U2)
+f1=d2_truss_elementforce(E1,A1,L1,45,U1)
+println("f1=\r")
+display(f1)
+f2=d2_truss_elementforce(E2,A2,L2,0,U2)
+println("f2=\r")
+display(f2)
 #computing element stresses
-σ1=D2_TrussElementStress(E1,L1,45,U1)
+σ1=d2_truss_elementstress(E1,L1,45,U1)
 println("σ1=\r")
 display(σ1)
-σ2=D2_TrussElementStress(E2,L2,0,U2)
+σ2=d2_truss_elementstress(E2,L2,0,U2)
 println("σ2=\r")
 display(σ2)
