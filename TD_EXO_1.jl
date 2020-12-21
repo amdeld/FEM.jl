@@ -78,7 +78,7 @@ display(U)
 F=K*U
 println("F=\r")
 display(F)
-#COMPUTING STRESSES
+#COMPUTING STRAINS, INTERNAL FORCES, STRESSES
 #writing the element nodal displacement vectors
 U1=[U[1], U[2], U[5], U[6]]
 U2=[U[3], U[4], U[5], U[6]]
