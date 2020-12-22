@@ -113,7 +113,8 @@ display(σ1)
 σ2=d2_truss_elementstress(E2,L2,0,U2)
 println("σ2=\r")
 display(σ2)
-# Plooting
+# Plotting
+# Plotting
 using PyPlot
 Xini=[X1pos, X3pos]
 Yini=[Y1pos, Y3pos]
