@@ -115,17 +115,19 @@ println("σ2=\r")
 display(σ2)
 # Plotting
 # Plotting
-using PyPlot
+using Plots
 Xini=[X1pos, X3pos]
 Yini=[Y1pos, Y3pos]
-plot(Xini,Yini,"ks-")
+plot(Xini,Yini,label=false,marker = 5,shape=:sq,color=:black)
 Xini=[X2pos, X3pos]
 Yini=[Y2pos, Y3pos]
-plot(Xini,Yini,"ks-")
+plot!(Xini,Yini,label=false,marker = 5, shape=:sq, color=:black)
 fampl=100
 Xdef=[(X1pos+fampl*U[1]), (X3pos+fampl*U[5])]
 Ydef=[(Y1pos+fampl*U[1]), (Y3pos+fampl*U[6])]
-plot(Xdef,Ydef,"bs-")
+plot!(Xdef,Ydef,label=false,marker = 5,shape=:sq,color=:blue)
 Xdef=[(X2pos+fampl*U[3]), (X3pos+fampl*U[5])]
 Ydef=[(Y2pos+fampl*U[4]), (Y3pos+fampl*U[6])]
-plot(Xdef,Ydef,"bs-")
+plot!(Xdef,Ydef,label=false,title  = "Undeformed and Deformed Shapes",
+xlabel = "Horizontal coordinate X",
+ylabel = "Vertical coordinate Y",marker = 5,shape=:sq,color=:blue)
