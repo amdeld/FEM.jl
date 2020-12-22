@@ -84,25 +84,19 @@ U1=[U[1], U[2], U[5], U[6]]
 U2=[U[3], U[4], U[5], U[6]]
 #computing element strains
 ϵ1=d2_truss_elementstrain(L1,45,U1)
-println("ϵ1=\r")
-display(ϵ1)
+@show ϵ1
 ϵ2=d2_truss_elementstrain(L2,0,U2)
-println("ϵ2=\r")
-display(ϵ2)
+@show ϵ2
 #computing element forces
 f1=d2_truss_elementforce(E1,A1,L1,45,U1)
-println("f1=\r")
-display(f1)
+@show f1
 f2=d2_truss_elementforce(E2,A2,L2,0,U2)
-println("f2=\r")
-display(f2)
+@show f1
 #computing element stresses
 σ1=d2_truss_elementstress(E1,L1,45,U1)
-println("σ1=\r")
-display(σ1)
+@show σ1
 σ2=d2_truss_elementstress(E2,L2,0,U2)
-println("σ2=\r")
-display(σ2)
+@show σ2
 # Plotting
 using Plots
 Xini=[X1pos, X3pos]
