@@ -113,20 +113,18 @@ display(σ1)
 σ2=d2_truss_elementstress(E2,L2,0,U2)
 println("σ2=\r")
 display(σ2)
-#= ==============================================POST-PROCESSING=================
-hold on
-Xini=[X1pos X3pos]
-Yini=[Y1pos Y3pos]
+# Plooting
+using PyPlot
+Xini=[X1pos, X3pos]
+Yini=[Y1pos, Y3pos]
 plot(Xini,Yini,"ks-")
-Xini=[X2pos X3pos]
-Yini=[Y2pos Y3pos]
+Xini=[X2pos, X3pos]
+Yini=[Y2pos, Y3pos]
 plot(Xini,Yini,"ks-")
 fampl=100
-Xdef=[(X1pos+fampl*U[1]) (X3pos+fampl*U[5])]
-Ydef=[(Y1pos+fampl*U[1]) (Y3pos+fampl*U[6])]
+Xdef=[(X1pos+fampl*U[1]), (X3pos+fampl*U[5])]
+Ydef=[(Y1pos+fampl*U[1]), (Y3pos+fampl*U[6])]
 plot(Xdef,Ydef,"bs-")
-Xdef=[(X2pos+fampl*U[3]) (X3pos+fampl*U[5])]
-Ydef=[(Y2pos+fampl*U[4]) (Y3pos+fampl*U[6])]
+Xdef=[(X2pos+fampl*U[3]), (X3pos+fampl*U[5])]
+Ydef=[(Y2pos+fampl*U[4]), (Y3pos+fampl*U[6])]
 plot(Xdef,Ydef,"bs-")
-
-=#
