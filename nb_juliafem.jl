@@ -63,7 +63,7 @@ md"
 α = 3.7 # variable latex-unicode  names — type it by "\alpha<tab>"
 
 # ╔═╡ 59033820-4c2b-11eb-33e1-75045e1bb19c
- y= sin(x)
+ y= 2α+1
 
 # ╔═╡ 77b027b0-4c2b-11eb-1c56-9d5a448c9b72
 
