@@ -60,17 +60,28 @@ md"
 "
 
 # ╔═╡ 3a714aa0-4c2b-11eb-22aa-cf44281380a7
-α = 3.7 # variable latex-unicode  names — type it by "\alpha<tab>"
+α = 3 # variable latex-unicode  names — type it by "\alpha<tab>"
+
+# ╔═╡ 626c1ba0-4c32-11eb-33da-3b2914157ab5
+typeof(α)
 
 # ╔═╡ 59033820-4c2b-11eb-33e1-75045e1bb19c
- y= 2α+1
+ y= 2α+1.5
+
+# ╔═╡ 71551810-4c32-11eb-23d1-07a71cc94923
+typeof(y)
+
+# ╔═╡ 23dd3ef0-4c32-11eb-057d-4be03341d81b
+md"
+## Les vecteurs
+"
 
 # ╔═╡ 77b027b0-4c2b-11eb-1c56-9d5a448c9b72
-
+x = [1, 17, 32, 15]  # les éléments sont séparés par des virgules
 
 # ╔═╡ Cell order:
-# ╠═425bfbf0-4c19-11eb-0a6e-6d5a00a82793
-# ╠═49658820-4c1f-11eb-2843-bf8462b87dba
+# ╟─425bfbf0-4c19-11eb-0a6e-6d5a00a82793
+# ╟─49658820-4c1f-11eb-2843-bf8462b87dba
 # ╠═fdd145a0-4c2a-11eb-14db-8b615050cc95
 # ╠═c92a9d50-4c2b-11eb-373c-111930018fc3
 # ╠═340e7700-4c2b-11eb-2e3f-1dd734673d31
@@ -84,5 +95,8 @@ md"
 # ╠═d567e540-4c2c-11eb-2085-93c039ced357
 # ╟─53242890-4c2d-11eb-3de1-b17bdf7b1721
 # ╠═3a714aa0-4c2b-11eb-22aa-cf44281380a7
+# ╠═626c1ba0-4c32-11eb-33da-3b2914157ab5
 # ╠═59033820-4c2b-11eb-33e1-75045e1bb19c
+# ╠═71551810-4c32-11eb-23d1-07a71cc94923
+# ╟─23dd3ef0-4c32-11eb-057d-4be03341d81b
 # ╠═77b027b0-4c2b-11eb-1c56-9d5a448c9b72
