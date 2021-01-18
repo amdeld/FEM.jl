@@ -25,7 +25,7 @@ cos(1 + im)
 # types et collections
 
 3 + 5 # nombre entier stockée en 32/64 bits en fonction de l'architecture machine
-typeof(3+5) 
+typeof(3 + 5) 
 3. * 4. # nombre en virgule flottante stockée en 32/64 bits en fonction de l'architecture machine
 typeof(3. * 4.)
 typeof(3. * 4)
@@ -66,12 +66,12 @@ subtypes(Integer)
 # type utilisateur
 
 struct MyComplex
-    _real :: Float64
-    _imag :: Float64
+    _real::Float64
+    _imag::Float64
 end
 typeof(MyComplex)
 MyComplex(1,2)
-typeof(MyComplex(1,2))
+typeof(MyComplex(1, 2))
 # =============================================================================
 # REGLE DE NOMMAGE(variables, fonctions/méthodes, modules, types, macros)
 # =============================================================================
@@ -94,13 +94,15 @@ typeof(α)
 typeof(β)
 γ = α + β * im
 typeof(γ)
-δ=Float64(10)
-δ= MyComplex(1,2)
+δ = Float64(10)
+δ = MyComplex(1, 2)
 δ._real
 
 # Les vecteurs (tableau de nombres scalaires ou non de dim=1)
 
 v = [1, 17, 32, 15] 
+@show v
+size(v)
 n = length(v)
 eltype(v)
 v[2] # accès à l'élément d'index n°2 (indice de départ = 1)
@@ -157,11 +159,58 @@ AAAA = [AA;AA] # concaténation verticale par bloc (vcat)
 C = [ 1 2 3; 4 5 6; 7 8 9]
 C = [ u * v for u = 0:0.1:1, v = 0:0.1:1]
 
+
+# =============================================================================
+# Programmation 
+# =============================================================================
+for i = 1:5
+    println("i = $i")
+end
+for i = 1:1000
+    println(i)
+    if i >= 5
+       break
+    end
+end
+i = 1
+if i == 1
+    println("i = 1")
+end
+i = 2
+if i != 1
+    println("i ≠ 1")
+else
+    println("i = 1")
+end
+i = 0
+if i == 1
+    println("i = 1")
+elseif i > 1
+    println("i > 1")
+else 
+    println("i < 1")
+end
+i=0
+while i<5
+    i+=1  # i =i+1
+    println("i = $i")
+end
+i=0 
+while i<10
+    i+=1
+    if i <= 5
+    println("i = $i")
+    else
+        break
+    end
+end
+# using LinearAlgebra
+
 # =============================================================================
 # Algèbre linéaire
+# Déterminant, valeurs et vecteurs propres...
 # =============================================================================
 
-# Déterminant, valeurs et vecteurs propres
 # using LinearAlgebra
 
 A = [1. 2. 3; 4 5 6; 7 8 10.]
@@ -207,7 +256,7 @@ f(1)
 f(im, 2)
 f(π, [1, 2, 3])
 
-@which f(im,im)
+@which f(im, im)
 
 using BenchmarkTools
 
@@ -224,29 +273,29 @@ V = rand(1_000_000)
 @time my_sum(V) # Exécution de la fonction  my_sum
 @time my_sum(V)
 
-@code_native debuginfo=:none my_sum(V)
+@code_native debuginfo = :none my_sum(V)
 
 UR = (1:1_000_000)
 @time my_sum(UR) # # Compilation + Exécution de la fonction  my_sum avec argument de type UnitRange (spécialisation)
 @time my_sum(UR)
 @time my_sum(UR)
 
-@code_native debuginfo=:none my_sum(UR) # code natif différent du précédent  avec même implémnetation => spécialisation
+@code_native debuginfo = :none my_sum(UR) # code natif différent du précédent  avec même implémnetation => spécialisation
 
 @btime my_sum(UR)
 @btime Base.sum(UR) # pas de magie dans Julia !!
 
 function my_sum(X::Array{Float64,2})
     acc = zero(eltype(X))
-    ni,nj=size(X)
+    ni, nj = size(X)
     for j in 1:nj
         for i in 1:ni
-           acc += X[i,j]
+            acc += X[i,j]
         end
     end
     acc
 end
-A=rand(Float64, 1_000,1_000)
+A = rand(Float64, 1_000, 1_000)
 methods(my_sum)
 @time my_sum(A) # type est connu, donc pas de perte de temps pour le branchement
 @time my_sum(A)
@@ -254,7 +303,7 @@ methods(my_sum)
 @btime my_sum(A)
 @which my_sum(A)
 
-@code_native debuginfo=:none my_sum(A)
+@code_native debuginfo = :none my_sum(A)
 
 # =============================================================================
 # Sciences des données 
@@ -267,3 +316,18 @@ using DataFrames
 
 df = CSV.File(HTTP.get("https://raw.githubusercontent.com/nassarhuda/easy_data/master/programming_languages.csv").body) |> DataFrame
 @show df
+
+
+# =============================================================================
+# Calcul parallèle sur GPU
+# =============================================================================
+
+using BenchmarkTools
+
+mcpu = rand(2^10, 2^10)
+@benchmark mcpu*mcpu
+
+using CuArrays
+
+mgpu = cu(mcpu)
+@benchmark CuArrays.@sync mgpu*mgpu
