@@ -192,7 +192,7 @@ else
 end
 i=0
 while i<5
-    i+=1  # i =i+1
+    global i+=1  # i =i+1
     println("i = $i")
 end
 i=0 
@@ -211,7 +211,7 @@ end
 # Déterminant, valeurs et vecteurs propres...
 # =============================================================================
 
-# using LinearAlgebra
+using LinearAlgebra
 
 A = [1. 2. 3; 4 5 6; 7 8 10.]
 diag(A)
@@ -325,9 +325,9 @@ df = CSV.File(HTTP.get("https://raw.githubusercontent.com/nassarhuda/easy_data/m
 using BenchmarkTools
 
 mcpu = rand(2^10, 2^10)
-@benchmark mcpu*mcpu
+@btime mcpu*mcpu
 
 using CuArrays
 
 mgpu = cu(mcpu)
-@benchmark CuArrays.@sync mgpu*mgpu
+@btime  mgpu*mgpu
