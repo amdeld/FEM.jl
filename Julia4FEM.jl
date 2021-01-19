@@ -197,7 +197,7 @@ while i<5
 end
 i=0 
 while i<10
-    i+=1
+    global i+=1
     if i <= 5
     println("i = $i")
     else
