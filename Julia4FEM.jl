@@ -2,8 +2,8 @@
 # CALCULATRICE SCIENTIFIQUE
 # =============================================================================
 
-
 # opérateurs  classiques : +-*/\
+
 1 + 3
 3 / 7
 3 \ 7 # ≈ 7 / 3
@@ -11,12 +11,15 @@
 im # nombre complexe i
 im^2
 # Les fonctions usuelles : exp, log, log10, abs, sqrt, cbrt, sign
+
 log10(100_000)
 log(exp(2))
 1 / (1 + exp(1))
 # Les fonctions trigonométriques usuelles : sin, cos, tan, cot, sec, csc, sinh, cosh, tanh, coth, sech, csch, asin, acos, atan...
+
 sin(pi)
 cos(1 + im)
+
 
 # =============================================================================
 # VALEURS (tout ce qui est manipulable en Julia) & TYPES (Int32, Int64, Int128, Float32, Float64, Complex32, Complex64, Complex128...)
@@ -46,7 +49,9 @@ collect(0:0.1:1)
 [4. 5. 6.;7. 8. 9.]
 (1, 2.0, "test") # tuple
 typeof((1, 2.0, "test"))
+
 # Caractères et chaînes de caractères
+
 'A'
 "Hello" 
 
@@ -60,6 +65,7 @@ typeof((1, 2.0, "test"))
 typeof(1 > 2)
 
 # supertype et sous-types
+
 supertype(Int64)
 subtypes(Integer)
 
@@ -72,15 +78,17 @@ end
 typeof(MyComplex)
 MyComplex(1,2)
 typeof(MyComplex(1, 2))
+
+
 # =============================================================================
 # REGLE DE NOMMAGE(variables, fonctions/méthodes, modules, types, macros)
 # =============================================================================
-
 #= 
 - noms des variables  en minuscule, la séparation des mots dans une variable se fait à l'aide d'un underscore ('_') ("snake case")
 - noms de type et de modules commencent par une lettre majuscule, les majuscules séparant les différents mots du nom (exemple "MonModule") ("camel case")
 - noms des fonctions et macros en minuscule sans underscores.
 - une fonction qui modifie ses arguments s'écrit avec ! à la fin. =#
+
 
 # =============================================================================
 # VARIABLES (étiquettes associées aux valeurs)
@@ -163,6 +171,7 @@ C = [ u * v for u = 0:0.1:1, v = 0:0.1:1]
 # =============================================================================
 # Programmation 
 # =============================================================================
+
 for i = 1:5
     println("i = $i")
 end
@@ -204,7 +213,7 @@ while i<10
         break
     end
 end
-# using LinearAlgebra
+
 
 # =============================================================================
 # Algèbre linéaire
@@ -226,24 +235,35 @@ x = A \ b # résolution du système linéaire Ax=b
 xx = inv(A) * b # résolution du système linéaire Ax=b
 x - xx
 
+
 # =============================================================================
 # Fonctions, Méthodes, Compilation, Spécialisation, Multiple Dispatch
 # =============================================================================
+
 # Version longue
+
 function fun_name(arg1, arg2)
     tmp = arg1 + arg2
     return tmp * arg1          # <- le mot-clé return est optionnel, la dernière valeur calculée est retournée
 end    
+
 # Appel
+
 fun_name(2, 3)
 
 # Version courte
+
 fun_name(arg1, arg2) = arg1 * (arg1 + arg2)
+
 # Appel
+
 fun_name(2, 3)
 
+
+# Multiple Dispatch
+# différentes implémentations (méthodes) de la fonction f
+
 function f end
-# différentes implémentations
 f(x)          = println("Generic method with 1 argument : $x")
 f(x::Integer) = println("Specific method with 1 argument (Integer) : $x")
 f(x, y)       = println("Generic method with 2 arguments: $x, $y")
@@ -305,11 +325,26 @@ methods(my_sum)
 
 @code_native debuginfo = :none my_sum(A)
 
+
+# =============================================================================
+# Graphique avec Plots
+#  =============================================================================
+
+using Plots
+x=0:2π/100:2π
+y=sin.(x)
+theme(:dark)
+plot(x,y,title="Mon premier graphique avec Plots")
+y=cos.(x)
+plot!(x,y)
+
+
 # =============================================================================
 # Sciences des données 
 # https://en.wikibooks.org/wiki/Introducing_Julia/DataFrames
 # =============================================================================
 
+# using Pkg; Pkg.add("CSV"); Pkg.add("HTTP");Pkg.add("DataFrames")
 using CSV
 using HTTP
 using DataFrames
@@ -319,15 +354,29 @@ df = CSV.File(HTTP.get("https://raw.githubusercontent.com/nassarhuda/easy_data/m
 
 
 # =============================================================================
-# Calcul parallèle sur GPU
+# Calcul parallèle sur GPU NVidia
 # =============================================================================
 
 using BenchmarkTools
 
-mcpu = rand(2^10, 2^10)
+mcpu = rand(2^12, 2^12)
 @btime mcpu*mcpu
 
+# using Pkg; Pkg.add("CuArrays")
 using CuArrays
 
 mgpu = cu(mcpu)
 @btime  mgpu*mgpu
+
+# =============================================================================
+# Calcul symbolique
+# =============================================================================
+
+# using Pkg; Pkg.add("SymPy")
+using SymPy
+
+E, S, L, θ = symbols("E S L θ",real=true)
+ke = E * S / L * Sym[1 0 -1 0;0 0 0 0;-1 0 1 0;0 0 0 0 ]
+Re=Sym[cos(θ) sin(θ) 0 0; -sin(θ) cos(θ) 0 0; 0 0 cos(θ) sin(θ); 0 0 -sin(θ) cos(θ)]
+Ke=Re'*ke*Re
+
