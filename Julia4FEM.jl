@@ -17,8 +17,8 @@ log(exp(2))
 1 / (1 + exp(1))
 # Les fonctions trigonométriques usuelles : sin, cos, tan, cot, sec, csc, sinh, cosh, tanh, coth, sech, csch, asin, acos, atan...
 
-sin(pi)
-cos(1 + im)
+
+sin(π+√2) # Code Is Math !!  tapez "\pi<tab>" et "\sqrt<tab>2"
 
 
 # =============================================================================
@@ -53,9 +53,14 @@ typeof((1, 2.0, "test"))
 # Caractères et chaînes de caractères
 
 'A'
-"Hello" 
+typeof('A')
+"hello" 
 
-"racine de 2 : $(sqrt(2))"
+typeof("hello")
+
+"racine carrée de 2 : $(sqrt(2))"
+
+" √3 : $(√3)" 
 
 "Hello" * " John Doe"
 
