@@ -91,7 +91,7 @@ U2 = [U[3], U[4], U[5], U[6]]
 f1 = d2_truss_elementforce(E1, A1, L1, 45, U1)
 @show f1
 f2 = d2_truss_elementforce(E2, A2, L2, 0, U2)
-@show f1
+@show f2
 # computing element stresses
 σ1 = d2_truss_elementstress(E1, L1, 45, U1)
 @show σ1
