@@ -367,8 +367,8 @@ using BenchmarkTools
 mcpu = rand(2^12, 2^12)
 @btime mcpu*mcpu
 
-# using Pkg; Pkg.add("CuArrays")
-using CuArrays
+# using Pkg; Pkg.add("CUDA")
+using CUDA
 
 mgpu = cu(mcpu)
 @btime  mgpu*mgpu
